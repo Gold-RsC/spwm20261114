@@ -1,0 +1,3 @@
+../Core/template/protect.c:3:6:Protect_Init	1
+../Core/template/protect.c:16:6:Protect_Reset	1
+../Core/template/protect.c:26:6:Protect_Update	11

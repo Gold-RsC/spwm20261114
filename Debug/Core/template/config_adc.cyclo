@@ -1,0 +1,8 @@
+../Core/template/config_adc.c:5:6:CADC_Calibration_Start	1
+../Core/template/config_adc.c:23:6:CADC_Start_DMA	1
+../Core/template/config_adc.c:41:6:CADC_Stop_DMA	1
+../Core/template/config_adc.c:83:6:ADC_IT_Callbacks_Register	2
+../Core/template/config_adc.c:88:6:HAL_ADC_ConvCpltCallback	9
+../Core/template/config_adc.c:100:6:HAL_ADC_ConvHalfCpltCallback	9
+../Core/template/config_adc.c:113:6:CADC_Calibrate_VDDA	1
+../Core/template/config_adc.c:116:9:CADC_Calibrate_mv	1

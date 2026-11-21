@@ -1,0 +1,5 @@
+../Core/template/spwm.c:3:6:SPWM_Init	1
+../Core/template/spwm.c:24:9:SPWM_Update_Open	3
+../Core/template/spwm.c:34:9:SPWM_Update	4
+../Core/template/spwm.c:54:6:SPWM_PLL_Init	1
+../Core/template/spwm.c:67:9:SPWM_PLL_Update	5

@@ -1,0 +1,4 @@
+../Core/template/pid.c:3:6:PI_Init	32	static
+../Core/template/pid.c:11:9:PI_Update	32	static
+../Core/template/pid.c:23:6:PI_Reset	16	static
+../Core/template/pid.c:28:6:PI_Set_Output	16	static

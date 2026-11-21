@@ -1,0 +1,4 @@
+../Core/template/spll_1ph_sogi.c:3:6:SPLL_1Ph_Sogi_Init	1
+../Core/template/spll_1ph_sogi.c:25:6:SPLL_1Ph_Sogi_Reset	1
+../Core/template/spll_1ph_sogi.c:56:6:SPLL_1Ph_Sogi_Coeff_Calc	1
+../Core/template/spll_1ph_sogi.c:91:6:SPLL_1Ph_Sogi_Update	2

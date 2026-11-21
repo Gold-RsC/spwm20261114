@@ -1,0 +1,3 @@
+../Core/template/mppt.c:3:6:MPPT_Init	1
+../Core/template/mppt.c:12:6:MPPT_Reset	1
+../Core/template/mppt.c:21:9:MPPT_Update	5

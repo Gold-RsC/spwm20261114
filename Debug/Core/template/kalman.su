@@ -1,0 +1,2 @@
+../Core/template/kalman.c:3:6:Kalman_Filter_Init	32	static
+../Core/template/kalman.c:16:9:Kalman_Filter_Update	32	static

@@ -1,0 +1,95 @@
+Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
+ ../Core/Inc/stm32g4xx_hal_conf.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h \
+ ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h \
+ ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h \
+ ../Drivers/CMSIS/Include/core_cm4.h \
+ ../Drivers/CMSIS/Include/cmsis_version.h \
+ ../Drivers/CMSIS/Include/cmsis_compiler.h \
+ ../Drivers/CMSIS/Include/cmsis_gcc.h \
+ ../Drivers/CMSIS/Include/mpu_armv7.h \
+ ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio_ex.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma_ex.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_adc.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc_ex.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_exti.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ex.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_hrtim.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c_ex.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
+ ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h \
+ ../Core/Inc/hrtim.h ../Core/Inc/i2c.h ../Core/Inc/usart.h \
+ ../Core/Inc/gpio.h ../Core/template/config_hrtim.h \
+ ../Core/template/mbase.h ../Core/template/config_adc.h \
+ ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h \
+ ../Core/template/cv_cc.h ../Core/template/pid.h \
+ ../Core/template/kalman.h ../Core/template/print_adapt.h \
+ ../Core/template/spwm.h ../Core/template/sin_analyzer.h \
+ ../Core/template/spll_1ph_sogi.h
+../Core/Inc/main.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
+../Core/Inc/stm32g4xx_hal_conf.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h:
+../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h:
+../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h:
+../Drivers/CMSIS/Include/core_cm4.h:
+../Drivers/CMSIS/Include/cmsis_version.h:
+../Drivers/CMSIS/Include/cmsis_compiler.h:
+../Drivers/CMSIS/Include/cmsis_gcc.h:
+../Drivers/CMSIS/Include/mpu_armv7.h:
+../Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio_ex.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma_ex.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_adc.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc_ex.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_exti.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ex.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_hrtim.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c_ex.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h:
+../Core/Inc/adc.h:
+../Core/Inc/main.h:
+../Core/Inc/dma.h:
+../Core/Inc/hrtim.h:
+../Core/Inc/i2c.h:
+../Core/Inc/usart.h:
+../Core/Inc/gpio.h:
+../Core/template/config_hrtim.h:
+../Core/template/mbase.h:
+../Core/template/config_adc.h:
+../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h:
+../Core/template/cv_cc.h:
+../Core/template/pid.h:
+../Core/template/kalman.h:
+../Core/template/print_adapt.h:
+../Core/template/spwm.h:
+../Core/template/sin_analyzer.h:
+../Core/template/spll_1ph_sogi.h:

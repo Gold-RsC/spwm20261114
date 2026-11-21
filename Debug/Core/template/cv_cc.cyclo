@@ -1,0 +1,3 @@
+../Core/template/cv_cc.c:3:6:CV_CC_Init	1
+../Core/template/cv_cc.c:24:6:CV_CC_Reset	1
+../Core/template/cv_cc.c:32:9:CV_CC_Update	7

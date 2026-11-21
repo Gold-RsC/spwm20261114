@@ -1,0 +1,17 @@
+../Core/template/config_hrtim.c:6:6:CHRTIM_IT_Callbacks_Register	2
+../Core/template/config_hrtim.c:37:6:HAL_HRTIM_RegistersUpdateCallback	4
+../Core/template/config_hrtim.c:41:6:HAL_HRTIM_RepetitionEventCallback	4
+../Core/template/config_hrtim.c:45:6:HAL_HRTIM_Compare1EventCallback	4
+../Core/template/config_hrtim.c:49:6:HAL_HRTIM_Compare2EventCallback	4
+../Core/template/config_hrtim.c:53:6:HAL_HRTIM_Compare3EventCallback	4
+../Core/template/config_hrtim.c:57:6:HAL_HRTIM_Compare4EventCallback	4
+../Core/template/config_hrtim.c:61:6:HAL_HRTIM_Capture1EventCallback	4
+../Core/template/config_hrtim.c:65:6:HAL_HRTIM_Capture2EventCallback	4
+../Core/template/config_hrtim.c:69:6:HAL_HRTIM_DelayedProtectionCallback	4
+../Core/template/config_hrtim.c:73:6:HAL_HRTIM_CounterResetCallback	4
+../Core/template/config_hrtim.c:77:6:HAL_HRTIM_Output1SetCallback	4
+../Core/template/config_hrtim.c:81:6:HAL_HRTIM_Output1ResetCallback	4
+../Core/template/config_hrtim.c:85:6:HAL_HRTIM_Output2SetCallback	4
+../Core/template/config_hrtim.c:89:6:HAL_HRTIM_Output2ResetCallback	4
+../Core/template/config_hrtim.c:93:6:HAL_HRTIM_BurstDMATransferCallback	4
+../Core/template/config_hrtim.c:97:6:HAL_HRTIM_ErrorCallback	3
