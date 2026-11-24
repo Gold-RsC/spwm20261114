@@ -72,7 +72,6 @@ Power_t in, out;
 Kalman_Filter_t kalman[5];
 
 SPWM_t spwm;
-float pwm;
 
 const int FREQ      = 20000;
 const int HALF_FREQ = FREQ / 2;
@@ -88,20 +87,19 @@ void set_pwm(float pwm) {
     CHRTIM_Compare_Set(HRTIM_TIMERINDEX_MASTER, HRTIM_COMPAREUNIT_1, HALF_REP * (1 - pwm));
     CHRTIM_Compare_Set(HRTIM_TIMERINDEX_MASTER, HRTIM_COMPAREUNIT_2, HALF_REP * (1 + pwm));
 }
-bool flag = 0;
+
 void ADC_IT_cbks(void) {
     // 校准电压和电流，得到引脚上的电压值(mv)
     CADC_Calibrate_VDDA();
-    in.voltage  = CADC_Calibrate_mv(adc_dma_buffer[1]);
-    out.voltage = CADC_Calibrate_mv(adc_dma_buffer[2]);
+    in.voltage  = CADC_Calibrate_mv(adc_dma_buffer[2]);
+    float b     = CADC_Calibrate_mv(adc_dma_buffer[1]);
     in.current  = CADC_Calibrate_mv(adc_dma_buffer[3]);
     out.current = CADC_Calibrate_mv(adc_dma_buffer[4]);
 
-    //
-    flag = 1;
+
     // 拟合
     in.voltage  = in.voltage * 1.0f + 0.0f;
-    out.voltage = out.voltage * 1.0f + 0.0f;
+    out.voltage = b * 0.050911f - 63.3028f;
     in.current  = (in.current - 1650) * 1.0f + 0.0f;
     out.current = (out.current - 1650) * 1.0f + 0.0f;
 
@@ -109,42 +107,22 @@ void ADC_IT_cbks(void) {
     in.power  = in.voltage * in.current;
     out.power = out.voltage * out.current;
 
-
-    //
-    //        // 控制输出
-    //        float pwm = CV_CC_Update(&cv_cc, out.voltage, out.current, target_voltage, target_current);
-    //        set_pwm(pwm);
+    // Sin_Analyzer_Update(&spwm._state.sin_analyzer, out.voltage, out.voltage);
+    // float pwm = SPWM_Update_Open(&spwm);
+    float pwm = SPWM_Update(&spwm, out.voltage, out.voltage, 24.0f);
+    set_pwm(pwm);
+    static int i = 0;
+    ++i;
+    if (i < HALF_FREQ) {
+        return;
+    }
+    i = 0;
+    HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
 }
-float Ui_min = 9999;
-float Ii_min = 9999;
-float Uo_min = 9999;
-float Io_min = 9999;
 
-float Ui_max = 0;
-float Ii_max = 0;
-float Uo_max = 0;
-float Io_max = 0;
 void repetition_event_cbk(HRTIM_Timer_Index_t TimerIdx) {
     if (TimerIdx == HRTIM_TIMERINDEX_MASTER) {
         static int i = 0;
-
-        pwm = SPWM_Update_Open(&spwm);
-        set_pwm(pwm);
-        // CADC_Start_DMA();
-        // CADC_Calibrate_VDDA();
-        // in.voltage  = CADC_Calibrate_mv(adc_dma_buffer[1]);
-        // out.voltage = CADC_Calibrate_mv(adc_dma_buffer[2]);
-        // in.current  = CADC_Calibrate_mv(adc_dma_buffer[3]);
-        // out.current = CADC_Calibrate_mv(adc_dma_buffer[4]);
-
-        // Ui_max = max(Ui_max, in.voltage);
-        // Ii_max = max(Ii_max, in.current);
-        // Uo_max = max(Uo_max, out.voltage);
-        // Io_max = max(Io_max, out.current);
-        // Ui_min = min(Ui_min, in.voltage);
-        // Ii_min = min(Ii_min, in.current);
-        // Uo_min = min(Uo_min, out.voltage);
-        // Io_min = min(Io_min, out.current);
 
 
         if (i >= HALF_FREQ) {
@@ -225,7 +203,7 @@ int main(void) {
     CHRTIM_Output_Start(HRTIM_OUTPUT_TA1 | HRTIM_OUTPUT_TA2 | HRTIM_OUTPUT_TB1 | HRTIM_OUTPUT_TB2);
 
 
-    SPWM_Init(&spwm, (Float_t)FREQ, GRID_FREQUENCY, 0.8);
+    SPWM_Init(&spwm, (Float_t)FREQ, GRID_FREQUENCY, 0.95);
 
     HRTIM_IT_Callbacks_t hrtimcbks = {.repetition_event_cbk = repetition_event_cbk, .compare4_cbk = cmp4_cbk};
     CHRTIM_IT_Callbacks_Register(&hrtimcbks);
@@ -249,7 +227,7 @@ int main(void) {
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
-    	Float_t a[]={1,2,3};
+        Float_t a[] = {out.voltage, spwm.param.max_amplitude, spwm._state.sin_analyzer.out.rms_voltage};
         Vofa_JustFloat((Float_t*)&a, 3);
 
         // OLED_Print_16x8_px(0, 0, "Ui_min: %f", Ui_min);

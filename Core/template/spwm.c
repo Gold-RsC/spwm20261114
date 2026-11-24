@@ -13,7 +13,7 @@ void SPWM_Init(SPWM_t* controller,
     Sin_Analyzer_Init(&controller->_state.sin_analyzer, pwm_freq, 0, 1000);
 
     /* PI 输出直接作为调制比，初值取 0.8（与开环起始值一致） */
-    PI_Init(&controller->_state.pi_controller, 0.01f, 0.02f, 0.02f, 0.98f, 0.8f);
+    PI_Init(&controller->_state.pi_controller, 0.01f, 0.025f, 0.02f, 0.98f, max_amplitude);
 
     controller->_state.phase_accumulator = 0.0f;
     controller->_state.phase_increment   = 2.0f * MATH_PI * target_freq / pwm_freq;

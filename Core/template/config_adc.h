@@ -56,7 +56,7 @@
  *
  * @note ��ѹ�ο�ͨ��������ADC1��ͨ����
  */
-#define ADC1_CHANNEL_NUM 5
+#define ADC1_CHANNEL_NUM 3
 #define ADC2_CHANNEL_NUM 0
 #define ADC3_CHANNEL_NUM 0
 #define ADC4_CHANNEL_NUM 0
