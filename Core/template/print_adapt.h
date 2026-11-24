@@ -1,3 +1,7 @@
+/**
+ * @note 记得打开uart的DMA和NVIC
+ */
+
 #ifndef __PRINT_ADAPT_H__
 #define __PRINT_ADAPT_H__
 

@@ -33,6 +33,9 @@
 #include "kalman.h"
 #include "print_adapt.h"
 #include "spwm.h"
+#include "sin_analyzer.h"
+#include "pr.h"
+
 // #include "oled.h"
 /* USER CODE END Includes */
 
@@ -65,11 +68,14 @@ typedef struct {
     float voltage;
     float current;
     float power;
-    Sin_Analyzer_t sin_analyzer;
 } Power_t;
 Power_t in, out;
 
 Kalman_Filter_t kalman[5];
+
+Sin_Analyzer_t vout_sin_analyzer;
+PI_t vout_pi_controller;
+PR_t vout_pr_controller;
 
 SPWM_t spwm;
 
@@ -107,9 +113,15 @@ void ADC_IT_cbks(void) {
     in.power  = in.voltage * in.current;
     out.power = out.voltage * out.current;
 
-    // Sin_Analyzer_Update(&spwm._state.sin_analyzer, out.voltage, out.voltage);
-    // float pwm = SPWM_Update_Open(&spwm);
-    float pwm = SPWM_Update(&spwm, out.voltage, out.voltage, 24.0f);
+    Sin_Analyzer_Update(&vout_sin_analyzer, out.voltage);
+    if (vout_sin_analyzer.out.data_ready) {
+        if (vout_sin_analyzer.out.locked) {
+            SPWM_Set_Amplitude(&spwm, PI_Update(&vout_pi_controller, vout_sin_analyzer.out.rms, 24.0f));
+        }
+        vout_sin_analyzer.out.data_ready = false;
+    }
+    // PR_Update(&vout_pr_controller, out.voltage, 24.0f * 1.41421356f * sinf(vout_sin_analyzer.out.theta));
+    float pwm = SPWM_Update(&spwm);
     set_pwm(pwm);
     static int i = 0;
     ++i;
@@ -202,6 +214,9 @@ int main(void) {
     CHRTIM_Timer_Start(HRTIM_TIMERID_MASTER | HRTIM_TIMERID_TIMER_A | HRTIM_TIMERID_TIMER_B);
     CHRTIM_Output_Start(HRTIM_OUTPUT_TA1 | HRTIM_OUTPUT_TA2 | HRTIM_OUTPUT_TB1 | HRTIM_OUTPUT_TB2);
 
+    PI_Init(&vout_pi_controller, 0.005f, 0.01f, 0.02f, 0.98f, 0.8f);
+    PR_Init(&vout_pr_controller, 0.2, 50, 50, 1, FREQ, 0.02, 0.98, 0.8f);
+    Sin_Analyzer_Init(&vout_sin_analyzer, FREQ, 40, 60, 0.1);
 
     SPWM_Init(&spwm, (Float_t)FREQ, GRID_FREQUENCY, 0.95);
 
@@ -227,8 +242,8 @@ int main(void) {
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
-        Float_t a[] = {out.voltage, spwm.param.max_amplitude, spwm._state.sin_analyzer.out.rms_voltage};
-        Vofa_JustFloat((Float_t*)&a, 3);
+        Float_t a[] = {out.voltage, vout_sin_analyzer.out.rms, sinf(vout_sin_analyzer.out.theta)};
+        Vofa_JustFloat((Float_t*)&a, sizeof(a) / sizeof(a[0]));
 
         // OLED_Print_16x8_px(0, 0, "Ui_min: %f", Ui_min);
         // OLED_Print_16x8_px(0, 16, "Ui_max: %f", Ui_max);

@@ -12,7 +12,6 @@ size_t Vofa_JustFloat(Float_t* _data, size_t _num) {
                               bytes[i * sizeof(Float_t) + 3]);
     }
 
-    /* 帧尾: 0x00 0x00 0x80 0x7F (little-endian +Inf) */
     length += Vofa_Printf("%c%c%c%c", 0x00, 0x00, 0x80, 0x7F);
 
     return length;
